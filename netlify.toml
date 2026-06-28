@@ -1,0 +1,10 @@
+# Netlify deploy config for the caveui docs site (static export, no backend).
+# Netlify auto-detects Next.js; these settings point it at the web/ subdirectory
+# and publish the static export. No base path needed (served at the site root).
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"

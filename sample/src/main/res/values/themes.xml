@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Compose draws the entire UI, so this Android XML theme just needs to provide a
+      windowed, action-bar-less host. We inherit from a platform theme to avoid pulling
+      in the Material Components (XML) dependency the library doesn't need.
+    -->
+    <style name="Theme.CaveuiSample" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

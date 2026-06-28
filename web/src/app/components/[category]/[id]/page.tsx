@@ -1,0 +1,111 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ChevronLeft } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { CodeBlock } from "@/components/site/code-block";
+import { DetailActions } from "@/components/site/detail-actions";
+import { InstallTabs } from "@/components/site/install-tabs";
+import { getCategory, getVariant, getVariants, variantParams } from "@/lib/registry";
+import { installCommand } from "@/lib/registry/types";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return variantParams();
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string; id: string }>;
+}): Promise<Metadata> {
+  const { category, id } = await params;
+  const v = getVariant(category, id);
+  if (!v) return {};
+  const description =
+    v.description ?? `${v.name} — a copy-ready caveui ${category} component for Jetpack Compose.`;
+  return { title: v.name, description, openGraph: { title: `${v.name} — caveui`, description } };
+}
+
+export default async function VariantDetail({
+  params,
+}: {
+  params: Promise<{ category: string; id: string }>;
+}) {
+  const { category, id } = await params;
+  const v = getVariant(category, id);
+  const c = getCategory(category);
+  if (!v || !c) notFound();
+
+  const install = installCommand(v.id);
+
+  // Previous / next component within this category, for the ‹ › navigation arrows.
+  const list = getVariants(category);
+  const idx = list.findIndex((x) => x.id === v.id);
+  const prevHref = idx > 0 ? `/components/${category}/${list[idx - 1].id}/` : null;
+  const nextHref = idx >= 0 && idx < list.length - 1 ? `/components/${category}/${list[idx + 1].id}/` : null;
+
+  // LLM-friendly markdown for the "Copy Page" action (avoid backtick escaping with a fence const).
+  const fence = "```";
+  const pageMarkdown = [
+    `# ${v.name}`,
+    "",
+    v.description ?? `${v.name} — a caveui ${c.name} component for Jetpack Compose.`,
+    "",
+    "## Installation",
+    "",
+    `${fence}bash`,
+    install,
+    fence,
+    "",
+    "## Usage",
+    "",
+    `${fence}kotlin`,
+    v.code,
+    fence,
+    "",
+  ].join("\n");
+
+  return (
+    <div className="mx-auto max-w-3xl">
+      <Link
+        href={`/components/${category}/`}
+        className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ChevronLeft className="size-4" />
+        {c.name}
+      </Link>
+
+      {/* Header: title + description (left) · Copy Page / </> (right) */}
+      <div className="mt-4 flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge variant="secondary">{c.name}</Badge>
+            {v.tags?.map((t) => (
+              <Badge key={t} variant="outline">
+                {t}
+              </Badge>
+            ))}
+          </div>
+          <h1 className="mt-3 text-3xl font-extrabold tracking-tight">{v.name}</h1>
+          {v.description && <p className="mt-1.5 text-muted-foreground">{v.description}</p>}
+        </div>
+        <DetailActions page={pageMarkdown} prevHref={prevHref} nextHref={nextHref} />
+      </div>
+
+      {/* Preview */}
+      <div className="mt-6 flex min-h-[300px] flex-wrap items-center justify-center gap-4 rounded-xl border bg-card p-10">
+        {v.preview}
+      </div>
+
+      {/* Installation */}
+      <h2 className="mt-12 mb-4 text-xl font-semibold tracking-tight">Installation</h2>
+      <InstallTabs id={v.id} code={v.code} />
+
+      {/* Usage */}
+      <h2 className="mt-12 mb-4 text-xl font-semibold tracking-tight">Usage</h2>
+      <CodeBlock code={v.code} language="kotlin" />
+    </div>
+  );
+}

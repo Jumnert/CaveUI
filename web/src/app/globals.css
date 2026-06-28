@@ -1,0 +1,221 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Radix-nova component variants (from shadcn/tailwind.css). These map shorthand
+ * `data-*` variants to Radix data-state attributes. Required by the shadcn components
+ * (Tabs `data-horizontal:flex-col` so content stacks under the tab list, active states,
+ * accordion open/closed, switch checked, etc.).
+ */
+@custom-variant data-open {
+  &:where([data-state="open"]),
+  &:where([data-open]:not([data-open="false"])) { @slot; }
+}
+@custom-variant data-closed {
+  &:where([data-state="closed"]),
+  &:where([data-closed]:not([data-closed="false"])) { @slot; }
+}
+@custom-variant data-checked {
+  &:where([data-state="checked"]),
+  &:where([data-checked]:not([data-checked="false"])) { @slot; }
+}
+@custom-variant data-unchecked {
+  &:where([data-state="unchecked"]),
+  &:where([data-unchecked]:not([data-unchecked="false"])) { @slot; }
+}
+@custom-variant data-selected {
+  &:where([data-selected="true"]) { @slot; }
+}
+@custom-variant data-disabled {
+  &:where([data-disabled="true"]),
+  &:where([data-disabled]:not([data-disabled="false"])) { @slot; }
+}
+@custom-variant data-active {
+  &:where([data-state="active"]),
+  &:where([data-active]:not([data-active="false"])) { @slot; }
+}
+@custom-variant data-horizontal {
+  &:where([data-orientation="horizontal"]) { @slot; }
+}
+@custom-variant data-vertical {
+  &:where([data-orientation="vertical"]) { @slot; }
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  /* Wider container sizes for a spacious layout. */
+  --container-8xl: 90rem;
+  --container-9xl: 105rem;
+
+  /* shadcn token → Tailwind color mappings. */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Animation utilities → generate animate-* classes. */
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 0.7s ease-out both;
+  --animate-scale-in: scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-gradient: gradient-shift 6s ease infinite;
+  --animate-spin-slow: spin 6s linear infinite;
+  --animate-indeterminate: indeterminate 1.4s infinite linear;
+  --animate-shimmer: shimmer 1.6s infinite linear;
+  --animate-progress: progress 2s ease-in-out infinite;
+}
+
+/* Warm stone surfaces with an amber primary. Clean, minimal — shadcn aesthetic. */
+:root {
+  --radius: 0.65rem;
+  --background: oklch(0.99 0.006 85);
+  --foreground: oklch(0.22 0.01 60);
+  --card: oklch(1 0.004 85);
+  --card-foreground: oklch(0.22 0.01 60);
+  --popover: oklch(1 0.004 85);
+  --popover-foreground: oklch(0.22 0.01 60);
+  --primary: oklch(0.62 0.16 52);
+  --primary-foreground: oklch(0.99 0.01 85);
+  --secondary: oklch(0.96 0.01 80);
+  --secondary-foreground: oklch(0.28 0.02 60);
+  --muted: oklch(0.96 0.01 80);
+  --muted-foreground: oklch(0.52 0.02 60);
+  --accent: oklch(0.95 0.02 80);
+  --accent-foreground: oklch(0.28 0.02 60);
+  --destructive: oklch(0.58 0.24 27);
+  --border: oklch(0.9 0.012 80);
+  --input: oklch(0.9 0.012 80);
+  --ring: oklch(0.62 0.16 52);
+  --sidebar: oklch(0.985 0.006 85);
+  --sidebar-foreground: oklch(0.22 0.01 60);
+  --sidebar-primary: oklch(0.62 0.16 52);
+  --sidebar-primary-foreground: oklch(0.99 0.01 85);
+  --sidebar-accent: oklch(0.95 0.02 80);
+  --sidebar-accent-foreground: oklch(0.28 0.02 60);
+  --sidebar-border: oklch(0.9 0.012 80);
+  --sidebar-ring: oklch(0.62 0.16 52);
+  color-scheme: light;
+}
+
+.dark {
+  --background: oklch(0.16 0.008 60);
+  --foreground: oklch(0.92 0.01 85);
+  --card: oklch(0.2 0.008 60);
+  --card-foreground: oklch(0.92 0.01 85);
+  --popover: oklch(0.2 0.008 60);
+  --popover-foreground: oklch(0.92 0.01 85);
+  --primary: oklch(0.8 0.15 75);
+  --primary-foreground: oklch(0.24 0.04 60);
+  --secondary: oklch(0.27 0.01 60);
+  --secondary-foreground: oklch(0.92 0.01 85);
+  --muted: oklch(0.27 0.01 60);
+  --muted-foreground: oklch(0.72 0.01 80);
+  --accent: oklch(0.3 0.015 60);
+  --accent-foreground: oklch(0.92 0.01 85);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.8 0.15 75);
+  --sidebar: oklch(0.2 0.008 60);
+  --sidebar-foreground: oklch(0.92 0.01 85);
+  --sidebar-primary: oklch(0.8 0.15 75);
+  --sidebar-primary-foreground: oklch(0.24 0.04 60);
+  --sidebar-accent: oklch(0.3 0.015 60);
+  --sidebar-accent-foreground: oklch(0.92 0.01 85);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.8 0.15 75);
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Subtle animated gradient text for the hero keyword only. */
+.text-gradient {
+  background-image: linear-gradient(110deg, #f59e0b, #ea580c, #f59e0b);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 7s ease infinite;
+}
+
+/* Staggered entrance for grids (subtle, no hover elevation). */
+.stagger-children > * {
+  opacity: 0;
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.03s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.06s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.09s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.12s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.18s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.21s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.24s; }
+.stagger-children > *:nth-child(9) { animation-delay: 0.27s; }
+.stagger-children > *:nth-child(10) { animation-delay: 0.30s; }
+.stagger-children > *:nth-child(11) { animation-delay: 0.33s; }
+.stagger-children > *:nth-child(12) { animation-delay: 0.36s; }
+.stagger-children > *:nth-child(n + 13) { animation-delay: 0.38s; }
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scale-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-22px) translateX(10px); } }
+@keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes indeterminate { 0% { transform: translateX(-100%) scaleX(0.4); } 50% { transform: translateX(0%) scaleX(0.6); } 100% { transform: translateX(100%) scaleX(0.4); } }
+@keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+@keyframes progress { 0% { width: 8%; } 50% { width: 92%; } 100% { width: 8%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, .stagger-children > *, .text-gradient {
+    animation: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
