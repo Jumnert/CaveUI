@@ -96,12 +96,12 @@ export default function CTASection({
           </Badge>
         </div>
 
-        <h2 className="text-foreground mb-6 font-serif text-5xl leading-[1.02] font-normal tracking-tight text-balance sm:text-6xl md:text-7xl lg:text-8xl">
+        <h2 className="text-foreground mb-6 font-display text-5xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-6xl md:text-7xl lg:text-8xl">
           {headingLine1}
           {headingHighlight ? (
             <>
               {" "}
-              <span className="text-primary/80 italic">{headingHighlight}</span>
+              <span className="text-primary">{headingHighlight}</span>
             </>
           ) : null}
         </h2>

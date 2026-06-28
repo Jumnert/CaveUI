@@ -43,11 +43,21 @@ export default async function CategoryPage({
           {variants.length} variants · click any tile for the code &amp; install command
         </p>
       </header>
-      <PaginatedGallery>
-        {variants.map((v) => (
-          <PreviewCard key={v.id} variant={v} />
-        ))}
-      </PaginatedGallery>
+      {variants.length === 0 ? (
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed py-20 text-center">
+          <p className="text-base font-medium">Coming soon</p>
+          <p className="mt-1 max-w-sm text-sm text-muted-foreground">
+            This category is scaffolded — polished, animated <span className="font-medium">{c.name}</span>{" "}
+            components are on the way.
+          </p>
+        </div>
+      ) : (
+        <PaginatedGallery>
+          {variants.map((v) => (
+            <PreviewCard key={v.id} variant={v} />
+          ))}
+        </PaginatedGallery>
+      )}
     </div>
   );
 }

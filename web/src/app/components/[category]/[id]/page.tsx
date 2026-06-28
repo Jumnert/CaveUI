@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CodeBlock } from "@/components/site/code-block";
 import { AndroidFrame } from "@/components/site/android-frame";
+import { ComponentMinimap } from "@/components/site/component-minimap";
 import { DetailActions } from "@/components/site/detail-actions";
 import { InstallTabs } from "@/components/site/install-tabs";
 import { getCategory, getVariant, getVariants, variantParams } from "@/lib/registry";
@@ -26,7 +27,7 @@ export async function generateMetadata({
   if (!v) return {};
   const description =
     v.description ?? `${v.name} — a copy-ready caveui ${category} component for Jetpack Compose.`;
-  return { title: v.name, description, openGraph: { title: `${v.name} — caveui`, description } };
+  return { title: v.name, description };
 }
 
 export default async function VariantDetail({
@@ -67,7 +68,8 @@ export default async function VariantDetail({
   ].join("\n");
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto flex w-full max-w-5xl gap-10">
+      <div className="min-w-0 max-w-3xl flex-1">
       <Link
         href={`/components/${category}/`}
         className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -100,16 +102,20 @@ export default async function VariantDetail({
       </div>
 
       {/* Preview (inside an Android device mockup) */}
-      <div className="mt-6 flex justify-center rounded-xl border bg-card p-8 sm:p-10">
+      <div id="preview" className="mt-6 flex scroll-mt-24 justify-center rounded-xl border bg-card p-8 sm:p-10">
         <AndroidFrame className="h-[600px]">{v.preview}</AndroidFrame>
       </div>
 
       {/* Installation */}
-      <h2 className="mt-12 mb-4 text-xl font-semibold tracking-tight">Installation</h2>
+      <h2 id="installation" className="mt-12 mb-4 scroll-mt-24 text-xl font-semibold tracking-tight">
+        Installation
+      </h2>
       <InstallTabs />
 
       {/* Usage */}
-      <h2 className="mt-12 mb-4 text-xl font-semibold tracking-tight">Usage</h2>
+      <h2 id="usage" className="mt-12 mb-4 scroll-mt-24 text-xl font-semibold tracking-tight">
+        Usage
+      </h2>
       <CodeBlock code={v.code} language="kotlin" />
 
       {/* Previous / next component */}
@@ -137,6 +143,19 @@ export default async function VariantDetail({
           )}
         </nav>
       )}
+      </div>
+
+      <aside className="hidden w-44 shrink-0 xl:block">
+        <div className="sticky top-24">
+          <ComponentMinimap
+            items={[
+              { title: "Preview", url: "#preview" },
+              { title: "Installation", url: "#installation" },
+              { title: "Usage", url: "#usage" },
+            ]}
+          />
+        </div>
+      </aside>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { CategoryArt } from "@/components/site/category-art";
 import { categories, getVariants, totalVariants } from "@/lib/registry";
 
 export const metadata: Metadata = {
@@ -19,23 +20,26 @@ export default function ComponentsIndex() {
           categories.
         </p>
       </header>
-      <div className="stagger-children grid gap-5 sm:grid-cols-2">
+      <div className="stagger-children grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {categories.map((c) => {
           const Icon = c.icon;
           return (
             <Link key={c.slug} href={`/components/${c.slug}/`}>
-              <Card className="group h-full p-6 transition-colors hover:border-primary/50 hover:bg-accent/30">
-                <div className="flex items-center justify-between">
-                  <span className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Icon className="size-5" />
-                  </span>
-                  <span className="text-xs text-muted-foreground">{getVariants(c.slug).length}</span>
+              <Card className="group h-full overflow-hidden p-0 transition-colors hover:border-primary/50">
+                <CategoryArt slug={c.slug} />
+                <div className="p-5">
+                  <div className="flex items-center justify-between">
+                    <span className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Icon className="size-5" />
+                    </span>
+                    <span className="text-xs text-muted-foreground">{getVariants(c.slug).length}</span>
+                  </div>
+                  <h2 className="mt-4 flex items-center gap-1 font-semibold">
+                    {c.name}
+                    <ArrowRight className="size-4 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground">{c.description}</p>
                 </div>
-                <h2 className="mt-4 flex items-center gap-1 font-semibold">
-                  {c.name}
-                  <ArrowRight className="size-4 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
-                </h2>
-                <p className="mt-1 text-sm text-muted-foreground">{c.description}</p>
               </Card>
             </Link>
           );

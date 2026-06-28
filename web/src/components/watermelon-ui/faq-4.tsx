@@ -47,7 +47,7 @@ export function Faq4({
               {badge}
             </div>
           )}
-          <h2 className="text-foreground mb-4 text-3xl font-semibold tracking-tight md:text-5xl">
+          <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
             {title}
           </h2>
           {description && (

@@ -1,0 +1,45 @@
+# caveui
+
+> caveui is a community-driven, open-source catalog of beautiful, copy-friendly Jetpack Compose components for Android, built on top of Material 3. Components are copy-paste (you own the source) — there is no caveui dependency to install. The docs site is a static Next.js app; every component has a live preview (in an Android device mockup), light/dark theming, and copy-paste Kotlin.
+
+## About
+
+- Built on **Material 3** — components are plain Jetpack Compose customized on top of M3 (e.g. `Button`, `OutlinedTextField`), never bespoke wrappers.
+- **Copy-paste**: copy the Kotlin from any component page into your project; make sure Material 3 (via the Compose BOM) is on your classpath.
+- **MIT licensed**, no account, no backend.
+- Repository: https://github.com/Jumnert/CaveUI
+- Site: https://ui.jumnert.dev
+
+## Docs
+
+- [Introduction](https://ui.jumnert.dev/docs/introduction/): What caveui is and its principles.
+- [Installation](https://ui.jumnert.dev/docs/installation/): Add Material 3 and copy a component.
+- [Theming](https://ui.jumnert.dev/docs/theming/): Color, typography, shape and spacing tokens.
+- [CLI](https://ui.jumnert.dev/docs/cli/): Command-line usage.
+- [RTL](https://ui.jumnert.dev/docs/rtl/): Right-to-left layout support.
+- [Skills](https://ui.jumnert.dev/docs/skills/): Agent skills for scaffolding components.
+- [MCP Server](https://ui.jumnert.dev/docs/mcp-server/): Expose the registry to AI tools over MCP.
+- [Registry](https://ui.jumnert.dev/docs/registry/): How components are described and served.
+- [Forms](https://ui.jumnert.dev/docs/forms/): Building Compose forms with caveui inputs.
+- [Changelog](https://ui.jumnert.dev/docs/changelog/): Notable changes.
+
+## Components
+
+- [All components](https://ui.jumnert.dev/components/): The full gallery.
+- [Buttons](https://ui.jumnert.dev/components/buttons/): Actions in every emphasis, state and animation.
+- [Cards](https://ui.jumnert.dev/components/cards/): Surfaces for grouping content.
+- [Inputs](https://ui.jumnert.dev/components/inputs/): Text fields, search, password and more.
+- [Badges](https://ui.jumnert.dev/components/badges/): Status, counts and labels.
+- [Toggles](https://ui.jumnert.dev/components/toggles/): Switches and segmented controls.
+- [Loaders](https://ui.jumnert.dev/components/loaders/): Spinners, bars, skeletons and dots.
+- [Icons](https://ui.jumnert.dev/components/icons/): Animated icons ready for Compose.
+
+## Blocks
+
+- [Blocks](https://ui.jumnert.dev/blocks/): Full-page sections composed from caveui components.
+
+## Notes for agents
+
+- Each component detail page lives at `/components/<category>/<id>/` and shows: a preview, an Installation note (Material 3 prerequisite), and the Usage Kotlin snippet to copy.
+- Use the "Copy Page" action on a component page to grab an LLM-friendly markdown summary of that component.
+- Some pages describe planned interfaces (a `npx caveui add` CLI and an MCP server) — treat those as intended/forthcoming rather than shipped.

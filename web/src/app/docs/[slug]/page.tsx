@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CodeBlock } from "@/components/site/code-block";
+import { AppleHelloCaveui } from "@/components/site/apple-hello-caveui";
 import { docParams, docs, getDoc } from "@/lib/docs";
 
 export const dynamicParams = false;
@@ -20,7 +21,6 @@ export async function generateMetadata({
   return {
     title: doc.title,
     description: doc.description,
-    openGraph: { title: `${doc.title} — caveui`, description: doc.description },
   };
 }
 
@@ -47,6 +47,12 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight">{doc.title}</h1>
         <p className="mt-2 text-muted-foreground">{doc.description}</p>
       </header>
+
+      {doc.slug === "introduction" && (
+        <div className="mb-10 flex justify-center py-6 text-primary">
+          <AppleHelloCaveui className="h-28 w-auto sm:h-36" />
+        </div>
+      )}
 
       <div className="space-y-5">
         {doc.blocks.map((block, i) => {

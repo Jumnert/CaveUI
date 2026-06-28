@@ -8,7 +8,21 @@ export type CategorySlug =
   | "badges"
   | "toggles"
   | "loaders"
-  | "icons";
+  | "icons"
+  | "checks"
+  | "choices"
+  | "hints"
+  | "avatars"
+  | "disclosures"
+  | "sliders"
+  | "selects"
+  | "overlays"
+  | "navigation"
+  | "feedback"
+  | "menus"
+  | "pickers"
+  | "charts"
+  | "command";
 
 /**
  * One catalog entry. `preview` is the live (shadcn/Tailwind) rendering shown in the
