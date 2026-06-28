@@ -7,7 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 import { GithubIcon } from "@/components/site/github-icon";
-import { Footer5 } from "@/components/watermelon-ui/footer-5";
+import { SearchCommand } from "@/components/site/search-command";
+import { Separator } from "@/components/ui/separator";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -19,7 +20,7 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const SITE_URL = "https://caveui.dev";
+const SITE_URL = "https://ui.jumnert.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -62,18 +63,34 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <TooltipProvider delayDuration={200}>
           <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur">
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-              <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight">
-                🪨 caveui
-              </Link>
-              <div className="flex items-center gap-1">
-                <Button variant="ghost" asChild>
-                  <Link href="/components/buttons/">Components</Link>
-                </Button>
+              <div className="flex items-center gap-6">
+                <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight">
+                  🪨 caveui
+                </Link>
+                <div className="hidden items-center gap-1 md:flex">
+                  <Button variant="ghost" asChild className="text-[15px]">
+                    <Link href="/">Home</Link>
+                  </Button>
+                  <Button variant="ghost" asChild className="text-[15px]">
+                    <Link href="/docs/introduction/">Docs</Link>
+                  </Button>
+                  <Button variant="ghost" asChild className="text-[15px]">
+                    <Link href="/components/">Components</Link>
+                  </Button>
+                  <Button variant="ghost" asChild className="text-[15px]">
+                    <Link href="/blocks/">Blocks</Link>
+                  </Button>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <SearchCommand />
+                <Separator orientation="vertical" className="mx-1 h-5" />
                 <Button variant="ghost" size="icon" asChild aria-label="GitHub">
-                  <a href="https://github.com/caveui/caveui" target="_blank" rel="noreferrer">
+                  <a href="https://github.com/Jumnert/CaveUI" target="_blank" rel="noreferrer">
                     <GithubIcon className="size-4" />
                   </a>
                 </Button>
+                <Separator orientation="vertical" className="mx-1 h-5" />
                 <ThemeToggle />
               </div>
             </nav>
@@ -81,37 +98,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
           <main className="flex-1">{children}</main>
 
-          <Footer5
-            brandName="🪨 caveui"
-            brandWatermark="caveui"
-            copyright={`© ${new Date().getFullYear()} caveui · MIT licensed`}
-            socialLinks={[
-              {
-                icon: <GithubIcon className="size-4" />,
-                href: "https://github.com/caveui/caveui",
-                label: "GitHub",
-              },
-            ]}
-            linkGroups={[
-              {
-                title: "Components",
-                links: [
-                  { label: "Buttons", href: "/components/buttons/" },
-                  { label: "Cards", href: "/components/cards/" },
-                  { label: "Loaders", href: "/components/loaders/" },
-                  { label: "Icons", href: "/components/icons/" },
-                ],
-              },
-              {
-                title: "Resources",
-                links: [
-                  { label: "All components", href: "/components/" },
-                  { label: "GitHub", href: "https://github.com/caveui/caveui" },
-                ],
-              },
-            ]}
-            legalLinks={[{ label: "License", href: "https://github.com/caveui/caveui" }]}
-          />
           <Toaster />
         </TooltipProvider>
       </body>

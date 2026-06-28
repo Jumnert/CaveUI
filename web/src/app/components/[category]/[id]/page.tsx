@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { CodeBlock } from "@/components/site/code-block";
+import { AndroidFrame } from "@/components/site/android-frame";
 import { DetailActions } from "@/components/site/detail-actions";
 import { InstallTabs } from "@/components/site/install-tabs";
 import { getCategory, getVariant, getVariants, variantParams } from "@/lib/registry";
-import { installCommand } from "@/lib/registry/types";
 
 export const dynamicParams = false;
 
@@ -38,13 +39,13 @@ export default async function VariantDetail({
   const c = getCategory(category);
   if (!v || !c) notFound();
 
-  const install = installCommand(v.id);
-
-  // Previous / next component within this category, for the ‹ › navigation arrows.
+  // Previous / next component within this category.
   const list = getVariants(category);
   const idx = list.findIndex((x) => x.id === v.id);
-  const prevHref = idx > 0 ? `/components/${category}/${list[idx - 1].id}/` : null;
-  const nextHref = idx >= 0 && idx < list.length - 1 ? `/components/${category}/${list[idx + 1].id}/` : null;
+  const prev = idx > 0 ? list[idx - 1] : null;
+  const next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
+  const prevHref = prev ? `/components/${category}/${prev.id}/` : null;
+  const nextHref = next ? `/components/${category}/${next.id}/` : null;
 
   // LLM-friendly markdown for the "Copy Page" action (avoid backtick escaping with a fence const).
   const fence = "```";
@@ -55,9 +56,7 @@ export default async function VariantDetail({
     "",
     "## Installation",
     "",
-    `${fence}bash`,
-    install,
-    fence,
+    "caveui components are copy-paste Jetpack Compose built on Material 3 — there is no caveui dependency. Make sure Material 3 (Compose BOM) is on your classpath, then copy the Usage snippet below.",
     "",
     "## Usage",
     "",
@@ -91,21 +90,53 @@ export default async function VariantDetail({
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight">{v.name}</h1>
           {v.description && <p className="mt-1.5 text-muted-foreground">{v.description}</p>}
         </div>
-        <DetailActions page={pageMarkdown} prevHref={prevHref} nextHref={nextHref} />
+        <DetailActions
+          page={pageMarkdown}
+          shareTitle={`${v.name} — caveui`}
+          shareUrl={`/components/${category}/${v.id}/`}
+          prevHref={prevHref}
+          nextHref={nextHref}
+        />
       </div>
 
-      {/* Preview */}
-      <div className="mt-6 flex min-h-[300px] flex-wrap items-center justify-center gap-4 rounded-xl border bg-card p-10">
-        {v.preview}
+      {/* Preview (inside an Android device mockup) */}
+      <div className="mt-6 flex justify-center rounded-xl border bg-card p-8 sm:p-10">
+        <AndroidFrame className="h-[600px]">{v.preview}</AndroidFrame>
       </div>
 
       {/* Installation */}
       <h2 className="mt-12 mb-4 text-xl font-semibold tracking-tight">Installation</h2>
-      <InstallTabs id={v.id} code={v.code} />
+      <InstallTabs />
 
       {/* Usage */}
       <h2 className="mt-12 mb-4 text-xl font-semibold tracking-tight">Usage</h2>
       <CodeBlock code={v.code} language="kotlin" />
+
+      {/* Previous / next component */}
+      {(prev || next) && (
+        <nav className="mt-12 flex items-center justify-between gap-4 border-t pt-6">
+          {prev ? (
+            <Button variant="outline" asChild>
+              <Link href={`/components/${category}/${prev.id}/`}>
+                <ChevronLeft className="size-4" />
+                {prev.name}
+              </Link>
+            </Button>
+          ) : (
+            <span />
+          )}
+          {next ? (
+            <Button variant="outline" asChild>
+              <Link href={`/components/${category}/${next.id}/`}>
+                {next.name}
+                <ChevronRight className="size-4" />
+              </Link>
+            </Button>
+          ) : (
+            <span />
+          )}
+        </nav>
+      )}
     </div>
   );
 }

@@ -23,51 +23,47 @@ export const buttons: Variant[] = [
     name: "Primary",
     category: "buttons",
     description: "The default high-emphasis action.",
-    code: `CaveButton(text = "Continue", onClick = {})`,
+    code: `Button(onClick = {}) {
+    Text("Continue")
+}`,
     preview: <Button>Continue</Button>,
   },
   {
     id: "button-secondary",
     name: "Secondary",
     category: "buttons",
-    code: `CaveButton(
-    text = "Continue",
-    onClick = {},
-    variant = CaveButtonVariant.Secondary,
-)`,
+    code: `FilledTonalButton(onClick = {}) {
+    Text("Continue")
+}`,
     preview: <Button variant="secondary">Continue</Button>,
   },
   {
     id: "button-outline",
     name: "Outline",
     category: "buttons",
-    code: `CaveButton(
-    text = "Continue",
-    onClick = {},
-    variant = CaveButtonVariant.Outline,
-)`,
+    code: `OutlinedButton(onClick = {}) {
+    Text("Continue")
+}`,
     preview: <Button variant="outline">Continue</Button>,
   },
   {
     id: "button-ghost",
     name: "Ghost",
     category: "buttons",
-    code: `CaveButton(
-    text = "Continue",
-    onClick = {},
-    variant = CaveButtonVariant.Ghost,
-)`,
+    code: `TextButton(onClick = {}) {
+    Text("Continue")
+}`,
     preview: <Button variant="ghost">Continue</Button>,
   },
   {
     id: "button-icon-leading",
     name: "Icon + label",
     category: "buttons",
-    code: `CaveButton(
-    text = "Download",
-    onClick = {},
-    leadingIcon = Icons.Filled.Download,
-)`,
+    code: `Button(onClick = {}) {
+    Icon(Icons.Filled.Download, contentDescription = null, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(8.dp))
+    Text("Download")
+}`,
     preview: (
       <Button>
         <Download className="size-4" />
@@ -80,11 +76,15 @@ export const buttons: Variant[] = [
     name: "Loading",
     category: "buttons",
     description: "Spinner that also blocks input.",
-    code: `CaveButton(
-    text = "Please wait",
-    onClick = {},
-    loading = true,
-)`,
+    code: `Button(onClick = {}, enabled = false) {
+    CircularProgressIndicator(
+        modifier = Modifier.size(18.dp),
+        strokeWidth = 2.dp,
+        color = LocalContentColor.current,
+    )
+    Spacer(Modifier.width(8.dp))
+    Text("Please wait")
+}`,
     preview: (
       <Button disabled>
         <Loader2 className="size-4 animate-spin" />
@@ -96,12 +96,14 @@ export const buttons: Variant[] = [
     id: "button-success",
     name: "Success",
     category: "buttons",
-    code: `CaveButton(
-    text = "Saved",
+    code: `Button(
     onClick = {},
-    colors = CaveButtonDefaults.colors(container = Color(0xFF16A34A)),
-    leadingIcon = Icons.Filled.Check,
-)`,
+    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF16A34A)),
+) {
+    Icon(Icons.Filled.Check, contentDescription = null, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(8.dp))
+    Text("Saved")
+}`,
     preview: (
       <Button className="bg-emerald-600 text-white hover:bg-emerald-600/90">
         <Check className="size-4" />
@@ -116,11 +118,16 @@ export const buttons: Variant[] = [
     tags: ["animated"],
     code: `Button(
     onClick = {},
-    modifier = Modifier.background(
-        Brush.horizontalGradient(listOf(Color(0xFFF59E0B), Color(0xFFEA580C))),
-        RoundedCornerShape(8.dp),
-    ),
-) { Text("Get caveui Pro") }`,
+    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+    contentPadding = PaddingValues(0.dp),
+) {
+    Box(
+        Modifier
+            .background(Brush.horizontalGradient(listOf(Color(0xFFF59E0B), Color(0xFFEA580C))))
+            .padding(horizontal = 24.dp, vertical = 10.dp),
+        contentAlignment = Alignment.Center,
+    ) { Text("Get caveui Pro") }
+}`,
     preview: (
       <Button className="border-0 bg-gradient-to-r from-amber-500 to-orange-600 text-white hover:from-amber-500 hover:to-orange-600">
         Get caveui Pro
@@ -131,12 +138,11 @@ export const buttons: Variant[] = [
     id: "button-github",
     name: "GitHub",
     category: "buttons",
-    code: `CaveButton(
-    text = "Continue with GitHub",
-    onClick = {},
-    leadingIcon = Icons.Filled.Code,
-    variant = CaveButtonVariant.Outline,
-)`,
+    code: `OutlinedButton(onClick = {}) {
+    Icon(Icons.Filled.Code, contentDescription = null, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(8.dp))
+    Text("Continue with GitHub")
+}`,
     preview: (
       <Button variant="outline">
         <GithubIcon className="size-4" />
@@ -168,11 +174,12 @@ Box(
     name: "Arrow slide",
     category: "buttons",
     tags: ["animated"],
-    code: `CaveButton(
-    text = "Learn more",
-    onClick = {},
-    trailingIcon = Icons.Filled.ArrowForward, // animates on press
-)`,
+    code: `FilledTonalButton(onClick = {}) {
+    Text("Learn more")
+    Spacer(Modifier.width(8.dp))
+    // Animate the offset on press for the slide effect.
+    Icon(Icons.Filled.ArrowForward, contentDescription = null, modifier = Modifier.size(18.dp))
+}`,
     preview: (
       <Button variant="secondary" className="group">
         Learn more
@@ -184,11 +191,9 @@ Box(
     id: "button-pill",
     name: "Pill",
     category: "buttons",
-    code: `CaveButton(
-    text = "Follow",
-    onClick = {},
-    shape = RoundedCornerShape(50),
-)`,
+    code: `Button(onClick = {}, shape = RoundedCornerShape(50)) {
+    Text("Follow")
+}`,
     preview: <Button className="rounded-full px-6">Follow</Button>,
   },
   {
@@ -196,11 +201,12 @@ Box(
     name: "Small",
     category: "buttons",
     description: "Compact size for dense toolbars.",
-    code: `CaveButton(
-    text = "Small",
+    code: `Button(
     onClick = {},
-    size = CaveButtonSize.Small,
-)`,
+    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
+) {
+    Text("Small", style = MaterialTheme.typography.labelMedium)
+}`,
     preview: <Button size="sm">Small</Button>,
   },
   {
@@ -208,12 +214,14 @@ Box(
     name: "Large",
     category: "buttons",
     description: "High-emphasis hero call to action.",
-    code: `CaveButton(
-    text = "Get started",
+    code: `Button(
     onClick = {},
-    size = CaveButtonSize.Large,
-    trailingIcon = Icons.Filled.ArrowForward,
-)`,
+    contentPadding = PaddingValues(horizontal = 24.dp, vertical = 14.dp),
+) {
+    Text("Get started")
+    Spacer(Modifier.width(8.dp))
+    Icon(Icons.Filled.ArrowForward, contentDescription = null)
+}`,
     preview: (
       <Button size="lg">
         Get started
@@ -226,11 +234,9 @@ Box(
     name: "Icon only",
     category: "buttons",
     description: "Square button for a single glyph.",
-    code: `CaveButton(
-    onClick = {},
-    icon = Icons.Filled.Settings,
-    variant = CaveButtonVariant.Outline,
-)`,
+    code: `OutlinedIconButton(onClick = {}) {
+    Icon(Icons.Filled.Settings, contentDescription = "Settings")
+}`,
     preview: (
       <Button size="icon" variant="outline" aria-label="Settings">
         <Settings className="size-4" />
@@ -243,12 +249,11 @@ Box(
     category: "buttons",
     tags: ["animated"],
     description: "Looks like an inline text link.",
-    code: `CaveButton(
-    text = "View docs",
-    onClick = {},
-    variant = CaveButtonVariant.Link,
-    trailingIcon = Icons.Filled.ArrowForward,
-)`,
+    code: `TextButton(onClick = {}, contentPadding = PaddingValues(0.dp)) {
+    Text("View docs")
+    Spacer(Modifier.width(4.dp))
+    Icon(Icons.Filled.ArrowForward, contentDescription = null, modifier = Modifier.size(16.dp))
+}`,
     preview: (
       <Button variant="link" className="group px-0">
         View docs
@@ -261,12 +266,17 @@ Box(
     name: "Destructive",
     category: "buttons",
     description: "Irreversible or dangerous actions.",
-    code: `CaveButton(
-    text = "Delete",
+    code: `Button(
     onClick = {},
-    variant = CaveButtonVariant.Destructive,
-    leadingIcon = Icons.Filled.Delete,
-)`,
+    colors = ButtonDefaults.buttonColors(
+        containerColor = MaterialTheme.colorScheme.error,
+        contentColor = MaterialTheme.colorScheme.onError,
+    ),
+) {
+    Icon(Icons.Filled.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(8.dp))
+    Text("Delete")
+}`,
     preview: (
       <Button variant="destructive">
         <Trash2 className="size-4" />
@@ -279,14 +289,16 @@ Box(
     name: "Soft tinted",
     category: "buttons",
     description: "Low-emphasis tint of the brand color.",
-    code: `CaveButton(
-    text = "Upgrade",
+    code: `Button(
     onClick = {},
-    colors = CaveButtonDefaults.colors(
-        container = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
-        content = MaterialTheme.colorScheme.primary,
+    elevation = null,
+    colors = ButtonDefaults.buttonColors(
+        containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
+        contentColor = MaterialTheme.colorScheme.primary,
     ),
-)`,
+) {
+    Text("Upgrade")
+}`,
     preview: (
       <Button className="bg-primary/10 text-primary shadow-none hover:bg-primary/20">
         Upgrade
@@ -319,11 +331,9 @@ OutlinedButton(
     name: "Full width",
     category: "buttons",
     description: "Stretches to fill its container — great on mobile.",
-    code: `CaveButton(
-    text = "Continue",
-    onClick = {},
-    modifier = Modifier.fillMaxWidth(),
-)`,
+    code: `Button(onClick = {}, modifier = Modifier.fillMaxWidth()) {
+    Text("Continue")
+}`,
     preview: (
       <div className="w-full max-w-[240px]">
         <Button className="w-full">Continue</Button>
@@ -335,14 +345,13 @@ OutlinedButton(
     name: "Uppercase",
     category: "buttons",
     description: "Tracked, all-caps label for a bold tone.",
-    code: `CaveButton(
-    text = "Checkout".uppercase(),
-    onClick = {},
-    textStyle = MaterialTheme.typography.labelLarge.copy(
+    code: `Button(onClick = {}) {
+    Text(
+        "CHECKOUT",
         letterSpacing = 1.5.sp,
         fontWeight = FontWeight.SemiBold,
-    ),
-)`,
+    )
+}`,
     preview: (
       <Button className="text-xs font-semibold uppercase tracking-[0.15em]">
         Checkout
@@ -392,13 +401,14 @@ val alpha by rememberInfiniteTransition().animateFloat(
     targetValue = 1f,
     animationSpec = infiniteRepeatable(tween(900), RepeatMode.Reverse),
 )
-CaveButton(
-    text = "Live",
+Button(
     onClick = {},
     modifier = Modifier
         .graphicsLayer { this.alpha = alpha }
         .shadow(12.dp, spotColor = MaterialTheme.colorScheme.primary),
-)`,
+) {
+    Text("Live")
+}`,
     preview: (
       <Button className="animate-pulse shadow-lg shadow-primary/50">
         <span className="size-2 rounded-full bg-white/90" />
@@ -447,11 +457,9 @@ Button(onClick = {}, enabled = false) {
     category: "buttons",
     description: "Notification count anchored to the corner.",
     code: `Box {
-    CaveButton(
-        onClick = {},
-        icon = Icons.Filled.Notifications,
-        variant = CaveButtonVariant.Outline,
-    )
+    OutlinedIconButton(onClick = {}) {
+        Icon(Icons.Filled.Notifications, contentDescription = "Notifications")
+    }
     Badge(Modifier.align(Alignment.TopEnd)) { Text("3") }
 }`,
     preview: (
@@ -470,11 +478,14 @@ Button(onClick = {}, enabled = false) {
     name: "Add to cart",
     category: "buttons",
     description: "Commerce action with a leading cart glyph.",
-    code: `CaveButton(
-    text = "Add to cart",
+    code: `Button(
     onClick = {},
-    leadingIcon = Icons.Filled.ShoppingCart,
-)`,
+    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4F46E5)),
+) {
+    Icon(Icons.Filled.ShoppingCart, contentDescription = null, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(8.dp))
+    Text("Add to cart")
+}`,
     preview: (
       <Button className="bg-indigo-600 text-white hover:bg-indigo-600/90">
         <ShoppingCart className="size-4" />
@@ -488,13 +499,14 @@ Button(onClick = {}, enabled = false) {
     category: "buttons",
     tags: ["animated"],
     description: "Heart that fills and grows on hover.",
-    code: `CaveButton(
-    text = "Like",
+    code: `OutlinedButton(
     onClick = {},
-    variant = CaveButtonVariant.Outline,
-    leadingIcon = Icons.Filled.Favorite,
-    colors = CaveButtonDefaults.colors(content = Color(0xFFE11D48)),
-)`,
+    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFFE11D48)),
+) {
+    Icon(Icons.Filled.Favorite, contentDescription = null, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(8.dp))
+    Text("Like")
+}`,
     preview: (
       <Button variant="outline" className="group text-rose-600 hover:text-rose-600">
         <Heart className="size-4 transition-transform group-hover:scale-110 group-hover:fill-rose-600" />
@@ -506,12 +518,11 @@ Button(onClick = {}, enabled = false) {
     id: "button-share",
     name: "Share",
     category: "buttons",
-    code: `CaveButton(
-    text = "Share",
-    onClick = {},
-    variant = CaveButtonVariant.Secondary,
-    leadingIcon = Icons.Filled.Share,
-)`,
+    code: `FilledTonalButton(onClick = {}) {
+    Icon(Icons.Filled.Share, contentDescription = null, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(8.dp))
+    Text("Share")
+}`,
     preview: (
       <Button variant="secondary">
         <Share2 className="size-4" />

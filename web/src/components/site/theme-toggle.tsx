@@ -1,37 +1,20 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
-import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-function subscribe(cb: () => void) {
-  window.addEventListener("themechange", cb);
-  window.addEventListener("storage", cb);
-  return () => {
-    window.removeEventListener("themechange", cb);
-    window.removeEventListener("storage", cb);
-  };
-}
-const getSnapshot = () => document.documentElement.classList.contains("dark");
-const getServerSnapshot = () => false;
-
+/**
+ * Header theme toggle: an animated View Transitions reveal (MagicUI AnimatedThemeToggler)
+ * styled to match the ghost icon buttons in the nav. Uncontrolled — it toggles the `.dark`
+ * class on <html> and persists the choice to localStorage (read by the no-flash script).
+ */
 export function ThemeToggle() {
-  const dark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-
-  function toggle() {
-    const next = !document.documentElement.classList.contains("dark");
-    document.documentElement.classList.toggle("dark", next);
-    try {
-      localStorage.setItem("theme", next ? "dark" : "light");
-    } catch {
-      /* ignore */
-    }
-    window.dispatchEvent(new Event("themechange"));
-  }
-
   return (
-    <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={toggle}>
-      {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
-    </Button>
+    <AnimatedThemeToggler
+      variant="circle"
+      className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+      aria-label="Toggle theme"
+    />
   );
 }

@@ -5,6 +5,8 @@ import CTASection from "@/components/watermelon-ui/cta-2";
 import Integrations from "@/components/watermelon-ui/integrations-1";
 import Testimonials from "@/components/watermelon-ui/testimonials-4";
 import { Faq4 } from "@/components/watermelon-ui/faq-4";
+import Announcement4 from "@/components/watermelon-ui/announcement-4";
+import { SiteFooter } from "@/components/site/site-footer";
 import { getVariant, totalVariants } from "@/lib/registry";
 
 const featured: { category: string; id: string }[] = [
@@ -32,20 +34,18 @@ export default function Home() {
 
   return (
     <div className="w-full">
+      {/* Announcement bar (index page only, flush under the nav) */}
+      <Announcement4 />
+
       {/* Hero (watermelon cta-2) */}
       <CTASection
         badge={`Open source · ${total}+ components`}
-        headingLine1="Copy-paste Compose components."
-        headingHighlight="confidence."
+        headingLine1="Copy-paste Compose"
+        headingHighlight="components."
         subtext="caveui is an open-source catalog of beautifully designed, fully animated Jetpack Compose components. Preview in light & dark, then copy the Kotlin or install via the CLI."
         primaryCTA={{ label: "Browse components", href: "/components/" }}
-        secondaryCTA={{ label: "View on GitHub", href: "https://github.com/caveui/caveui" }}
+        secondaryCTA={{ label: "View on GitHub", href: "https://github.com/Jumnert/CaveUI" }}
       />
-
-      {/* Integrations */}
-      <section className="mx-auto w-full max-w-7xl px-6 py-12">
-        <Integrations />
-      </section>
 
       {/* Featured custom Compose components */}
       <section className="mx-auto w-full max-w-7xl px-6 py-12">
@@ -73,6 +73,11 @@ export default function Home() {
             );
           })}
         </div>
+      </section>
+
+      {/* Integrations */}
+      <section className="mx-auto w-full max-w-7xl px-6 py-12">
+        <Integrations />
       </section>
 
       {/* Bento grid of features */}
@@ -178,6 +183,8 @@ export default function Home() {
           { id: "6", question: "How do I contribute?", answer: "Open a pull request on GitHub. Adding a component is a single, well-defined PR." },
         ]}
       />
+
+      <SiteFooter />
     </div>
   );
 }

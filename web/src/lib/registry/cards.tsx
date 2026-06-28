@@ -52,7 +52,7 @@ export const cards: Variant[] = [
     category: "cards",
     code: `CaveCard {
     Row { Avatar("AS"); Column { Text("Ada S."); Text("Engineer") } }
-    CaveButton(text = "Follow", onClick = {})
+    Button(onClick = {}) { Text("Follow") }
 }`,
     preview: (
       <Card className="w-60">
@@ -118,7 +118,7 @@ export const cards: Variant[] = [
     code: `CaveCard {
     Text("Pro"); Text("$19/mo", style = typography.headlineMedium)
     listOf("Unlimited", "All components", "Priority").forEach { Row { Icon(Icons.Filled.Check, null); Text(it) } }
-    CaveButton(text = "Choose Pro", onClick = {})
+    Button(onClick = {}, modifier = Modifier.fillMaxWidth()) { Text("Choose Pro") }
 }`,
     preview: (
       <Card className="w-60">
@@ -175,7 +175,11 @@ export const cards: Variant[] = [
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text("$89", style = typography.titleLarge)
-        CaveButton(text = "Add", onClick = {}, leadingIcon = Icons.Filled.ShoppingCart)
+        Button(onClick = {}) {
+            Icon(Icons.Filled.ShoppingCart, contentDescription = null, modifier = Modifier.size(18.dp))
+            Spacer(Modifier.width(8.dp))
+            Text("Add")
+        }
     }
 }`,
     preview: (
@@ -300,20 +304,20 @@ export const cards: Variant[] = [
     code: `CaveCard {
     Text("Sign in", style = typography.titleMedium)
     Text("Welcome back to caveui", color = onSurfaceVariant)
-    CaveTextField(
+    OutlinedTextField(
         value = email,
         onValueChange = { email = it },
-        placeholder = "you@example.com",
-        leadingIcon = Icons.Filled.Email,
+        placeholder = { Text("you@example.com") },
+        leadingIcon = { Icon(Icons.Filled.Email, contentDescription = null) },
     )
-    CaveTextField(
+    OutlinedTextField(
         value = password,
         onValueChange = { password = it },
-        placeholder = "Password",
-        leadingIcon = Icons.Filled.Lock,
+        placeholder = { Text("Password") },
+        leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = null) },
         visualTransformation = PasswordVisualTransformation(),
     )
-    CaveButton(text = "Sign in", onClick = {}, modifier = Modifier.fillMaxWidth())
+    Button(onClick = {}, modifier = Modifier.fillMaxWidth()) { Text("Sign in") }
 }`,
     preview: (
       <Card className="w-64">
@@ -386,12 +390,11 @@ export const cards: Variant[] = [
         Icon(Icons.Filled.Place, null)
         Text("Berlin, DE", color = onSurfaceVariant)
     }
-    CaveButton(
-        text = "Email",
-        onClick = {},
-        variant = CaveButtonVariant.Outline,
-        leadingIcon = Icons.Filled.Email,
-    )
+    OutlinedButton(onClick = {}) {
+        Icon(Icons.Filled.Email, contentDescription = null, modifier = Modifier.size(18.dp))
+        Spacer(Modifier.width(8.dp))
+        Text("Email")
+    }
 }`,
     preview: (
       <Card className="w-60">
@@ -521,7 +524,7 @@ export const cards: Variant[] = [
     ) { Icon(Icons.Filled.Email, null) }
     Text("No messages", style = typography.titleSmall)
     Text("Your inbox is empty.", color = onSurfaceVariant)
-    CaveButton(text = "Compose", onClick = {}, variant = CaveButtonVariant.Outline)
+    OutlinedButton(onClick = {}) { Text("Compose") }
 }`,
     preview: (
       <Card className="w-64">

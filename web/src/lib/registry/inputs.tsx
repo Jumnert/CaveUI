@@ -19,7 +19,11 @@ export const inputs: Variant[] = [
     id: "input-default",
     name: "Default",
     category: "inputs",
-    code: `CaveTextField(value = value, onValueChange = { value = it }, placeholder = "Email")`,
+    code: `OutlinedTextField(
+    value = value,
+    onValueChange = { value = it },
+    placeholder = { Text("Email") },
+)`,
     preview: <Input placeholder="Email" className="w-56" />,
   },
   {
@@ -28,7 +32,7 @@ export const inputs: Variant[] = [
     category: "inputs",
     code: `Column {
     Text("Email", style = MaterialTheme.typography.labelLarge)
-    CaveTextField(value = value, onValueChange = { value = it })
+    OutlinedTextField(value = value, onValueChange = { value = it })
 }`,
     preview: (
       <div className="grid w-56 gap-1.5">
@@ -42,11 +46,11 @@ export const inputs: Variant[] = [
     name: "Leading icon",
     category: "inputs",
     tags: ["icon"],
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = email,
     onValueChange = { email = it },
-    leadingIcon = Icons.Filled.Email,
-    placeholder = "you@example.com",
+    leadingIcon = { Icon(Icons.Filled.Email, contentDescription = null) },
+    placeholder = { Text("you@example.com") },
 )`,
     preview: (
       <div className="relative w-56">
@@ -60,11 +64,11 @@ export const inputs: Variant[] = [
     name: "Trailing icon",
     category: "inputs",
     tags: ["icon"],
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = date,
     onValueChange = { date = it },
-    trailingIcon = Icons.Filled.CalendarMonth,
-    placeholder = "Pick a date",
+    trailingIcon = { Icon(Icons.Filled.CalendarMonth, contentDescription = null) },
+    placeholder = { Text("Pick a date") },
 )`,
     preview: (
       <div className="relative w-56">
@@ -77,11 +81,11 @@ export const inputs: Variant[] = [
     id: "input-search",
     name: "Search",
     category: "inputs",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = q,
     onValueChange = { q = it },
-    leadingIcon = Icons.Filled.Search,
-    placeholder = "Search…",
+    leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
+    placeholder = { Text("Search…") },
     shape = RoundedCornerShape(50),
 )`,
     preview: (
@@ -95,11 +99,11 @@ export const inputs: Variant[] = [
     id: "input-password",
     name: "Password",
     category: "inputs",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = pw,
     onValueChange = { pw = it },
     visualTransformation = PasswordVisualTransformation(),
-    trailingIcon = Icons.Filled.Visibility,
+    trailingIcon = { Icon(Icons.Filled.Visibility, contentDescription = null) },
 )`,
     preview: (
       <div className="relative w-56">
@@ -112,7 +116,12 @@ export const inputs: Variant[] = [
     id: "input-disabled",
     name: "Disabled",
     category: "inputs",
-    code: `CaveTextField(value = "", onValueChange = {}, enabled = false, placeholder = "Disabled")`,
+    code: `OutlinedTextField(
+    value = "",
+    onValueChange = {},
+    enabled = false,
+    placeholder = { Text("Disabled") },
+)`,
     preview: <Input placeholder="Disabled" disabled className="w-56" />,
   },
   {
@@ -120,11 +129,11 @@ export const inputs: Variant[] = [
     name: "Error",
     category: "inputs",
     tags: ["validation"],
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = value,
     onValueChange = { value = it },
     isError = true,
-    supportingText = "Required",
+    supportingText = { Text("Required") },
 )`,
     preview: (
       <div className="grid w-56 gap-1.5">
@@ -139,12 +148,15 @@ export const inputs: Variant[] = [
     category: "inputs",
     tags: ["validation"],
     description: "Positive validation state.",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = value,
     onValueChange = { value = it },
-    trailingIcon = Icons.Filled.Check,
-    colors = CaveTextFieldDefaults.colors(border = Color(0xFF10B981)),
-    supportingText = "Looks good!",
+    trailingIcon = { Icon(Icons.Filled.Check, contentDescription = null) },
+    colors = OutlinedTextFieldDefaults.colors(
+        focusedBorderColor = Color(0xFF10B981),
+        unfocusedBorderColor = Color(0xFF10B981),
+    ),
+    supportingText = { Text("Looks good!") },
 )`,
     preview: (
       <div className="grid w-56 gap-1.5">
@@ -164,11 +176,11 @@ export const inputs: Variant[] = [
     id: "input-helper",
     name: "Helper text",
     category: "inputs",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = value,
     onValueChange = { value = it },
-    label = "Username",
-    supportingText = "This will be your public handle.",
+    label = { Text("Username") },
+    supportingText = { Text("This will be your public handle.") },
 )`,
     preview: (
       <div className="grid w-56 gap-1.5">
@@ -182,11 +194,11 @@ export const inputs: Variant[] = [
     id: "input-prefix",
     name: "Prefix",
     category: "inputs",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = value,
     onValueChange = { value = it },
     prefix = { Text("https://") },
-    placeholder = "your-site",
+    placeholder = { Text("your-site") },
 )`,
     preview: (
       <div className="flex w-60">
@@ -201,11 +213,11 @@ export const inputs: Variant[] = [
     id: "input-suffix",
     name: "Suffix",
     category: "inputs",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = value,
     onValueChange = { value = it },
     suffix = { Text(".com") },
-    placeholder = "acme",
+    placeholder = { Text("acme") },
 )`,
     preview: (
       <div className="flex w-60">
@@ -222,13 +234,17 @@ export const inputs: Variant[] = [
     category: "inputs",
     tags: ["number"],
     code: `Row(verticalAlignment = Alignment.CenterVertically) {
-    CaveIconButton(Icons.Filled.Remove, onClick = { count-- })
-    CaveTextField(
+    IconButton(onClick = { count-- }) {
+        Icon(Icons.Filled.Remove, contentDescription = "Decrease")
+    }
+    OutlinedTextField(
         value = count.toString(),
         onValueChange = {},
         modifier = Modifier.width(56.dp),
     )
-    CaveIconButton(Icons.Filled.Add, onClick = { count++ })
+    IconButton(onClick = { count++ }) {
+        Icon(Icons.Filled.Add, contentDescription = "Increase")
+    }
 }`,
     preview: (
       <div className="flex w-56 items-center gap-2">
@@ -246,10 +262,10 @@ export const inputs: Variant[] = [
     id: "input-textarea",
     name: "Textarea",
     category: "inputs",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = value,
     onValueChange = { value = it },
-    placeholder = "Write a message…",
+    placeholder = { Text("Write a message…") },
     singleLine = false,
     minLines = 3,
 )`,
@@ -304,10 +320,10 @@ export const inputs: Variant[] = [
     id: "input-pill",
     name: "Pill",
     category: "inputs",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = value,
     onValueChange = { value = it },
-    placeholder = "Pill shaped",
+    placeholder = { Text("Pill shaped") },
     shape = RoundedCornerShape(50),
 )`,
     preview: <Input placeholder="Pill shaped" className="w-56 rounded-full px-4" />,
@@ -316,11 +332,14 @@ export const inputs: Variant[] = [
     id: "input-clearable",
     name: "Clearable",
     category: "inputs",
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = value,
     onValueChange = { value = it },
-    trailingIcon = Icons.Filled.Close,
-    onTrailingIconClick = { value = "" },
+    trailingIcon = {
+        IconButton(onClick = { value = "" }) {
+            Icon(Icons.Filled.Close, contentDescription = "Clear")
+        }
+    },
 )`,
     preview: (
       <div className="relative w-56">
@@ -340,13 +359,13 @@ export const inputs: Variant[] = [
     name: "Inline action",
     category: "inputs",
     code: `Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-    CaveTextField(
+    OutlinedTextField(
         value = email,
         onValueChange = { email = it },
-        placeholder = "Email",
+        placeholder = { Text("Email") },
         modifier = Modifier.weight(1f),
     )
-    CaveButton(text = "Subscribe", onClick = {})
+    Button(onClick = {}) { Text("Subscribe") }
 }`,
     preview: (
       <div className="flex w-60 items-center gap-2">
@@ -391,11 +410,11 @@ export const inputs: Variant[] = [
     name: "Floating label",
     category: "inputs",
     description: "Notched label resting on the border.",
-    code: `CaveTextField(
+    code: `// Material 3 floats the label onto the border automatically.
+OutlinedTextField(
     value = value,
     onValueChange = { value = it },
-    label = "Email",
-    floatingLabel = true,
+    label = { Text("Email") },
 )`,
     preview: (
       <div className="relative w-56">
@@ -414,11 +433,11 @@ export const inputs: Variant[] = [
     name: "Amount",
     category: "inputs",
     tags: ["number"],
-    code: `CaveTextField(
+    code: `OutlinedTextField(
     value = amount,
     onValueChange = { amount = it },
     prefix = { Text("$") },
-    placeholder = "0.00",
+    placeholder = { Text("0.00") },
     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
 )`,
     preview: (

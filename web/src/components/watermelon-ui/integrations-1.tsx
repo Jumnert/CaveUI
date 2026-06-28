@@ -372,7 +372,7 @@ export default function Integrations1() {
       <div className="container mx-auto max-w-5xl px-4">
         <div className="animate-in fade-in slide-in-from-bottom-4 mx-auto mb-16 flex max-w-2xl flex-col items-center text-center duration-700 md:mb-12">
           <h2 className="text-foreground mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            Seamless integrations, better campaigns
+            By developers, for developers
           </h2>
         </div>
 

@@ -4,18 +4,24 @@ import { useState } from "react";
 import Link from "next/link";
 import { Check, ChevronLeft, ChevronRight, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ShareMenu } from "./share-menu";
 
 /**
  * Header actions for a component detail page:
  * - "Copy Page" copies an LLM-friendly markdown summary of the page.
+ * - A {@link ShareMenu} to copy/share the page link.
  * - The ‹ › buttons navigate to the previous / next component in the category.
  */
 export function DetailActions({
   page,
+  shareTitle,
+  shareUrl,
   prevHref,
   nextHref,
 }: {
   page: string;
+  shareTitle: string;
+  shareUrl: string;
   prevHref: string | null;
   nextHref: string | null;
 }) {
@@ -38,26 +44,28 @@ export function DetailActions({
         {copied ? "Copied" : "Copy Page"}
       </Button>
 
+      <ShareMenu title={shareTitle} url={shareUrl} />
+
       {prevHref ? (
-        <Button variant="outline" size="icon" asChild aria-label="Previous component">
+        <Button variant="outline" size="icon-sm" asChild aria-label="Previous component">
           <Link href={prevHref}>
             <ChevronLeft className="size-4" />
           </Link>
         </Button>
       ) : (
-        <Button variant="outline" size="icon" disabled aria-label="Previous component">
+        <Button variant="outline" size="icon-sm" disabled aria-label="Previous component">
           <ChevronLeft className="size-4" />
         </Button>
       )}
 
       {nextHref ? (
-        <Button variant="outline" size="icon" asChild aria-label="Next component">
+        <Button variant="outline" size="icon-sm" asChild aria-label="Next component">
           <Link href={nextHref}>
             <ChevronRight className="size-4" />
           </Link>
         </Button>
       ) : (
-        <Button variant="outline" size="icon" disabled aria-label="Next component">
+        <Button variant="outline" size="icon-sm" disabled aria-label="Next component">
           <ChevronRight className="size-4" />
         </Button>
       )}

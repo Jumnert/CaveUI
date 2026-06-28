@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { categories, variantParams } from "@/lib/registry";
 
-const BASE = "https://caveui.dev";
+const BASE = "https://ui.jumnert.dev";
 
 export const dynamic = "force-static";
 

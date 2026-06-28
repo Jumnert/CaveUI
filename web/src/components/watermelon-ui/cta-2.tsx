@@ -17,7 +17,7 @@ interface SocialProof {
 interface CTASectionProps {
   badge?: string;
   headingLine1: string;
-  headingHighlight: string;
+  headingHighlight?: string;
   subtext: string;
   primaryCTA: {
     label: string;
@@ -76,7 +76,7 @@ function StarRating({ rating }: { rating: number }) {
 export default function CTASection({
   badge = "Trusted by 12,000+ teams",
   headingLine1 = "Build faster.",
-  headingHighlight = "confidence.",
+  headingHighlight,
   subtext = "Stop stitching together tools that don't talk. Everything your team needs — planning, review, and delivery — unified in one thoughtful workspace.",
   primaryCTA = { label: "Get started free" },
   secondaryCTA = { label: "See how it works" },
@@ -85,32 +85,35 @@ export default function CTASection({
   return (
     <section className="relative flex h-full w-full items-center justify-center">
       <div className="absolute inset-0 z-0 h-full w-full bg-transparent [background-image:radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.15)_1px,transparent_0)] [mask-image:linear-gradient(to_bottom,black_60%,transparent)] [background-size:20px_20px] [mask-composite:intersect] dark:[background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)]" />
-      <div className="relative z-10 w-full max-w-3xl overflow-hidden bg-transparent px-6 py-16 text-center sm:px-16 sm:py-20">
-        <div className="mb-7 flex justify-center">
+      <div className="relative z-10 w-full max-w-4xl overflow-hidden bg-transparent px-6 py-24 text-center sm:px-16 sm:py-32">
+        <div className="mb-8 flex justify-center">
           <Badge
             variant="secondary"
-            className="text-muted-foreground flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-medium tracking-widest uppercase"
+            className="text-muted-foreground flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-medium tracking-widest uppercase"
           >
             <FaCircle className="text-primary animate-pulse text-[6px]" />
             {badge}
           </Badge>
         </div>
 
-        <h2 className="text-foreground mb-5 font-serif text-4xl leading-[1.08] font-normal tracking-tight sm:text-5xl md:text-6xl">
+        <h2 className="text-foreground mb-6 font-serif text-5xl leading-[1.02] font-normal tracking-tight text-balance sm:text-6xl md:text-7xl lg:text-8xl">
           {headingLine1}
-          <br />
-          Ship with{" "}
-          <span className="text-primary/80 italic">{headingHighlight}</span>
+          {headingHighlight ? (
+            <>
+              {" "}
+              <span className="text-primary/80 italic">{headingHighlight}</span>
+            </>
+          ) : null}
         </h2>
 
-        <p className="text-muted-foreground mx-auto mb-10 max-w-md text-base leading-relaxed">
+        <p className="text-muted-foreground mx-auto mb-10 max-w-xl text-lg leading-relaxed text-pretty">
           {subtext}
         </p>
 
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
           <Button
             size="lg"
-            className="group w-full gap-2 rounded-md text-sm font-semibold shadow-[inset_0_0.5px_0px_rgba(255,255,255,0.5),inset_0_-0.5px_0px_rgba(0,0,0,0.3),inset_0_0.5px_10px_rgba(255,255,255,0.5),inset_0_-0.5px_4px_rgba(0,0,0,0.3)] text-shadow-2xs sm:w-auto"
+            className="group h-11 w-full gap-2 rounded-md px-6 text-base font-semibold shadow-[inset_0_0.5px_0px_rgba(255,255,255,0.5),inset_0_-0.5px_0px_rgba(0,0,0,0.3),inset_0_0.5px_10px_rgba(255,255,255,0.5),inset_0_-0.5px_4px_rgba(0,0,0,0.3)] text-shadow-2xs sm:w-auto"
             onClick={primaryCTA.onClick}
             asChild={!!primaryCTA.href}
           >
@@ -131,7 +134,7 @@ export default function CTASection({
             <Button
               size="lg"
               variant="outline"
-              className="text-muted-foreground dark:text-muted hover:text-foreground w-full rounded-md border-none bg-linear-to-b from-zinc-100 to-zinc-50 text-sm font-medium shadow-[inset_0_0.5px_0px_rgba(255,255,255,0.2),inset_0_-0.5px_0px_rgba(0,0,0,0.1),inset_0_0.5px_4px_rgba(255,255,255,0.2),inset_0_-0.5px_4px_rgba(0,0,0,0.1)] transition-all text-shadow-2xs sm:w-auto"
+              className="text-muted-foreground dark:text-muted hover:text-foreground h-11 w-full rounded-md border-none bg-linear-to-b from-zinc-100 to-zinc-50 px-6 text-base font-medium shadow-[inset_0_0.5px_0px_rgba(255,255,255,0.2),inset_0_-0.5px_0px_rgba(0,0,0,0.1),inset_0_0.5px_4px_rgba(255,255,255,0.2),inset_0_-0.5px_4px_rgba(0,0,0,0.1)] transition-all text-shadow-2xs sm:w-auto"
               onClick={secondaryCTA.onClick}
               asChild={!!secondaryCTA.href}
             >
