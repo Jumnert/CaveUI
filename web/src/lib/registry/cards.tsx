@@ -4179,7 +4179,7 @@ fun BufferedScrubber() {
     modifier = Modifier.fillMaxWidth(),
   ) {
     Column(Modifier.padding(16.dp)) {
-      Text("Episode 12 — Signals",
+      Text("Episode 12, Signals",
         style = MaterialTheme.typography.titleSmall)
       Spacer(Modifier.height(14.dp))
       Box(
@@ -4221,7 +4221,7 @@ fun BufferedScrubber() {
   preview: (
     <Card className="w-64 mx-auto rounded-2xl">
       <CardContent className="p-4">
-        <div className="text-sm font-semibold">Episode 12 — Signals</div>
+        <div className="text-sm font-semibold">Episode 12, Signals</div>
         <div className="relative mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
           <div className="absolute inset-y-0 left-0 w-[72%] bg-primary/35" />
           <div className="absolute inset-y-0 left-0 w-[40%] bg-primary" />
@@ -6516,8 +6516,7 @@ fun StoryRingCard() {
                             Brush.sweepGradient(
                                 listOf(
                                     Color(0xFFF59E0B),
-                                    Color(0xFFEC4899),
-                                    Color(0xFF8B5CF6),
+                                    Color(0xFFE11D48),
                                     Color(0xFFF59E0B)
                                 )
                             ),
@@ -6533,11 +6532,11 @@ fun StoryRingCard() {
                             MaterialTheme.colorScheme.secondary
                         ),
                     contentAlignment = Alignment.Center
-                ) { Text("NV") }
+                ) { Text("MQ") }
             }
             Spacer(Modifier.height(12.dp))
             Text(
-                "Nova Vex",
+                "Mara Quinn",
                 style = MaterialTheme.typography.titleSmall
             )
             Text(
@@ -6551,17 +6550,17 @@ fun StoryRingCard() {
   preview: (
     <Card className="w-60 mx-auto rounded-2xl bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
       <CardContent className="flex flex-col items-center p-5">
-        <span className="grid size-20 place-items-center rounded-full bg-gradient-to-tr from-amber-400 via-pink-500 to-violet-500 p-[3px]">
+        <span className="grid size-20 place-items-center rounded-full bg-gradient-to-tr from-amber-400 to-rose-500 p-[3px]">
           <span className="grid size-full place-items-center rounded-full bg-white dark:bg-zinc-900">
-            <span className="grid size-16 place-items-center rounded-full bg-purple-500 text-sm font-semibold text-white">
-              NV
+            <span className="grid size-16 place-items-center rounded-full bg-secondary text-sm font-semibold text-secondary-foreground">
+              MQ
             </span>
           </span>
         </span>
         <div className="mt-3 text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-          Nova Vex
+          Mara Quinn
         </div>
-        <div className="text-xs text-pink-500">New story</div>
+        <div className="text-xs text-muted-foreground">New story</div>
       </CardContent>
     </Card>
   )
@@ -12170,7 +12169,7 @@ fun MaintenanceNotice() {
             Column {
                 Text("Scheduled maintenance")
                 Text(
-                    "Sat 2:00–4:00 AM UTC",
+                    "Sat 2:00-4:00 AM UTC",
                     style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -12182,7 +12181,7 @@ fun MaintenanceNotice() {
     <Settings className="size-5 text-secondary-foreground animate-spin [animation-duration:4s]" />
     <div className="flex flex-col">
       <span className="text-sm font-semibold text-secondary-foreground">Scheduled maintenance</span>
-      <span className="text-xs text-secondary-foreground/70">Sat 2:00–4:00 AM UTC</span>
+      <span className="text-xs text-secondary-foreground/70">Sat 2:00-4:00 AM UTC</span>
     </div>
   </CardContent>
 </Card>`

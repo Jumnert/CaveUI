@@ -351,7 +351,7 @@ OutlinedButton(
     id: "button-block",
     name: "Full width",
     category: "buttons",
-    description: "Stretches to fill its container — great on mobile.",
+    description: "Stretches to fill its container, great on mobile.",
     code: `Button(onClick = {}, modifier = Modifier.fillMaxWidth()) {
     Text("Continue")
 }`,
@@ -653,7 +653,7 @@ Button(
     id: "button-fab",
     name: "FAB",
     category: "buttons",
-    description: "The primary floating action button — a round, elevated accent action.",
+    description: "The primary floating action button, a round, elevated accent action.",
     code: `FloatingActionButton(
     onClick = {},
     containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -1904,7 +1904,7 @@ Button(
 ) {
     // basicMarquee scrolls overflowing text
     Text(
-        "Limited offer — 50% off all plans this week",
+        "Limited offer, 50% off all plans this week",
         maxLines = 1,
         modifier = Modifier.basicMarquee(),
     )
@@ -1912,7 +1912,7 @@ Button(
     preview: (
       <Button className="w-40 overflow-hidden px-0">
         <span className="inline-block whitespace-nowrap animate-[marquee_6s_linear_infinite]">
-          Limited offer — 50% off all plans this week —&nbsp;
+          Limited offer, 50% off all plans this week&nbsp;&nbsp;
         </span>
       </Button>
     ),

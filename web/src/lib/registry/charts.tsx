@@ -991,7 +991,7 @@ fun Lollipop(
     id: "chart-range-bars",
     name: "Range bars",
     category: "charts",
-    description: "A floating bar chart of min–max ranges that expand from their midpoints.",
+    description: "A floating bar chart of min-max ranges that expand from their midpoints.",
     tags: ["animated"],
     code: `@Composable
 fun RangeBars(
@@ -2170,7 +2170,7 @@ fun HeatmapMatrix(
     id: "chart-correlation",
     name: "Correlation matrix",
     category: "charts",
-    description: "A correlation heatmap with diverging blue–red cells and inline coefficients.",
+    description: "A correlation heatmap with diverging blue-red cells and inline coefficients.",
     tags: ["animated"],
     code: `@Composable
 fun CorrelationMatrix(

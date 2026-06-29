@@ -44,7 +44,7 @@ export default async function BlockDetail({ params }: { params: Promise<{ id: st
     "",
     "## Installation",
     "",
-    "caveui blocks are copy-paste Jetpack Compose built on Material 3 — no dependency. Make sure Material 3 (Compose BOM) is on your classpath, then copy the screen below.",
+    "caveui blocks are copy-paste Jetpack Compose built on Material 3, no dependency. Make sure Material 3 (Compose BOM) is on your classpath, then copy the screen below.",
     "",
     "## Usage",
     "",
@@ -72,7 +72,7 @@ export default async function BlockDetail({ params }: { params: Promise<{ id: st
           </div>
           <DetailActions
             page={pageMarkdown}
-            shareTitle={`${b.name} block — caveui`}
+            shareTitle={`${b.name} block, caveui`}
             shareUrl={`/blocks/${b.id}/`}
             prevHref={prev ? `/blocks/${prev.id}/` : null}
             nextHref={next ? `/blocks/${next.id}/` : null}

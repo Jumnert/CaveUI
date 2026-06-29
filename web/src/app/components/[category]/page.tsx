@@ -40,14 +40,14 @@ export default async function CategoryPage({
         <h1 className="text-3xl font-extrabold tracking-tight">{c.name}</h1>
         <p className="mt-2 text-muted-foreground">{c.description}</p>
         <p className="mt-1 text-sm text-muted-foreground">
-          {variants.length} variants · click any tile for the code &amp; install command
+          {variants.length} variants · tap any tile for the full Compose code
         </p>
       </header>
       {variants.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed py-20 text-center">
           <p className="text-base font-medium">Coming soon</p>
           <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-            This category is scaffolded — polished, animated <span className="font-medium">{c.name}</span>{" "}
+            This category is scaffolded, polished, animated <span className="font-medium">{c.name}</span>{" "}
             components are on the way.
           </p>
         </div>

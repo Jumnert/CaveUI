@@ -22,7 +22,7 @@ import {
 import type { Variant } from "./types";
 
 /**
- * Badges — curated, copy-worthy micro-interactions (not color re-skins).
+ * Badges, curated, copy-worthy micro-interactions (not color re-skins).
  * Each entry is a distinct concept + motion: a live radar, a rolling counter,
  * a draw-on verified check, a charging battery, etc. Previews are CSS/SVG
  * approximations; `code` is the real Material 3 / Compose source.
@@ -1585,7 +1585,7 @@ Surface(
                 .clipToBounds()
                 .padding(vertical = 4.dp),
         ) {
-            val msg = "Breaking — markets rally as tech leads gains  •  "
+            val msg = "Breaking, markets rally as tech leads gains  •  "
             Text(
                 msg + msg,
                 Modifier.layout { m, c ->
@@ -1608,7 +1608,7 @@ Surface(
             className="inline-block whitespace-nowrap pl-2 text-[11px]"
             style={{ animation: "marquee 5s linear infinite" }}
           >
-            Breaking — markets rally as tech leads gains&nbsp;&nbsp;•&nbsp;&nbsp;Breaking — markets rally&nbsp;&nbsp;
+            Breaking, markets rally as tech leads gains&nbsp;&nbsp;•&nbsp;&nbsp;Breaking, markets rally&nbsp;&nbsp;
           </span>
         </span>
       </span>

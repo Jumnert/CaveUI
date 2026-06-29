@@ -26,7 +26,7 @@ export async function generateMetadata({
   const v = getVariant(category, id);
   if (!v) return {};
   const description =
-    v.description ?? `${v.name} — a copy-ready caveui ${category} component for Jetpack Compose.`;
+    v.description ?? `${v.name}, a copy-ready caveui ${category} component for Jetpack Compose.`;
   return { title: v.name, description };
 }
 
@@ -53,11 +53,11 @@ export default async function VariantDetail({
   const pageMarkdown = [
     `# ${v.name}`,
     "",
-    v.description ?? `${v.name} — a caveui ${c.name} component for Jetpack Compose.`,
+    v.description ?? `${v.name}, a caveui ${c.name} component for Jetpack Compose.`,
     "",
     "## Installation",
     "",
-    "caveui components are copy-paste Jetpack Compose built on Material 3 — there is no caveui dependency. Make sure Material 3 (Compose BOM) is on your classpath, then copy the Usage snippet below.",
+    "caveui components are copy-paste Jetpack Compose built on Material 3, there is no caveui dependency. Make sure Material 3 (Compose BOM) is on your classpath, then copy the Usage snippet below.",
     "",
     "## Usage",
     "",
@@ -94,7 +94,7 @@ export default async function VariantDetail({
         </div>
         <DetailActions
           page={pageMarkdown}
-          shareTitle={`${v.name} — caveui`}
+          shareTitle={`${v.name}, caveui`}
           shareUrl={`/components/${category}/${v.id}/`}
           prevHref={prevHref}
           nextHref={nextHref}

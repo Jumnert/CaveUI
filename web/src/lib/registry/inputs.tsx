@@ -812,7 +812,7 @@ OutlinedTextField(
     preview: (
       <textarea
         aria-label="Notes"
-        defaultValue={"Type as much as you like —\nthis box grows with you."}
+        defaultValue={"Type as much as you like,\nthis box grows with you."}
         rows={3}
         className="flex field-sizing-content min-h-16 w-56 resize-none rounded-lg border border-input bg-transparent px-2.5 py-1.5 text-sm outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-input/30"
       />
@@ -1192,7 +1192,7 @@ OutlinedTextField(
     name: "Percentage",
     category: "inputs",
     description:
-      "Numeric field clamped to 0–100 with a trailing percent sign suffix.",
+      "Numeric field clamped to 0-100 with a trailing percent sign suffix.",
     tags: ["number"],
     code: `var value by remember { mutableStateOf("") }
 OutlinedTextField(
@@ -2034,7 +2034,7 @@ OutlinedTextField(
         modifier = Modifier.weight(1f),
         singleLine = true,
     )
-    Text("–", modifier = Modifier.padding(horizontal = 8.dp))
+    Text("-", modifier = Modifier.padding(horizontal = 8.dp))
     OutlinedTextField(
         value = max,
         onValueChange = { max = it },
@@ -2050,7 +2050,7 @@ OutlinedTextField(
           <DollarSign className="absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input aria-label="Min price" defaultValue="20" inputMode="numeric" className="pl-7" />
         </div>
-        <span className="text-muted-foreground">–</span>
+        <span className="text-muted-foreground">-</span>
         <div className="relative flex-1">
           <DollarSign className="absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input aria-label="Max price" defaultValue="80" inputMode="numeric" className="pl-7" />

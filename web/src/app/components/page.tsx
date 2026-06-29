@@ -24,7 +24,7 @@ export default function ComponentsIndex() {
         {categories.map((c) => {
           const Icon = c.icon;
           return (
-            <Link key={c.slug} href={`/components/${c.slug}/`}>
+            <Link key={c.slug} href={`/components/${c.slug}/`} aria-label={c.name}>
               <Card className="group h-full overflow-hidden p-0 transition-colors hover:border-primary/50">
                 <CategoryArt slug={c.slug} />
                 <div className="p-5">
@@ -32,13 +32,14 @@ export default function ComponentsIndex() {
                     <span className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <Icon className="size-5" />
                     </span>
-                    <span className="text-xs text-muted-foreground">{getVariants(c.slug).length}</span>
+                    <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium tabular-nums text-muted-foreground">
+                      {getVariants(c.slug).length}
+                    </span>
                   </div>
-                  <h2 className="mt-4 flex items-center gap-1 font-semibold">
-                    {c.name}
-                    <ArrowRight className="size-4 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
-                  </h2>
-                  <p className="mt-1 text-sm text-muted-foreground">{c.description}</p>
+                  <p className="mt-4 flex items-start gap-1 text-sm text-muted-foreground">
+                    {c.description}
+                    <ArrowRight className="mt-0.5 size-4 shrink-0 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
+                  </p>
                 </div>
               </Card>
             </Link>

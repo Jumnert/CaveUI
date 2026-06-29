@@ -1,12 +1,12 @@
 import type { Variant } from "./types";
 
 /**
- * Premium, copy-worthy animated icons — the "uiverse for Jetpack" bar: each one is a real
+ * Premium, copy-worthy animated icons, the "uiverse for Jetpack" bar: each one is a real
  * micro-interaction (morph, draw-on, sequenced reveal, physics pop), not a one-line
  * spin/pulse. Previews are CSS/SVG approximations; the `code` is the real Compose source.
  *
  * Each animation is built on Material 3 / plain Compose (Canvas, animate*AsState,
- * AnimatedVector, Material icons) — customized on top, never bespoke `Cave*` wrappers.
+ * AnimatedVector, Material icons), customized on top, never bespoke `Cave*` wrappers.
  */
 const icon = (
   id: string,
@@ -86,7 +86,7 @@ fun SuccessCheck(visible: Boolean, modifier = Modifier) {
   icon(
     "icon-menu-close",
     "Menu ↔ Close",
-    "A hamburger menu whose three lines morph into a close (X) — the canonical nav toggle.",
+    "A hamburger menu whose three lines morph into a close (X), the canonical nav toggle.",
     `@Composable
 fun MenuToClose(open: Boolean, onClick: () -> Unit) {
     val p by animateFloatAsState(if (open) 1f else 0f, spring(stiffness = 300f), label = "menu")
@@ -368,7 +368,7 @@ fun CopyButton(clipboard: ClipboardManager, text: String) {
   icon(
     "icon-theme-toggle",
     "Theme sun ↔ moon",
-    "A sun whose rays retract as a crescel mask slides in to form a moon — for light/dark toggles.",
+    "A sun whose rays retract as a crescel mask slides in to form a moon, for light/dark toggles.",
     `@Composable
 fun ThemeToggle(dark: Boolean, onToggle: () -> Unit) {
     val p by animateFloatAsState(if (dark) 1f else 0f, tween(450, easing = EaseInOut), label = "theme")
@@ -553,7 +553,7 @@ fun ProgressRing(progress: Float) { // 0f..1f
   icon(
     "icon-sync",
     "Sync",
-    "Paired arrows that rotate with momentum — overshooting then settling — between syncs.",
+    "Paired arrows that rotate with momentum, overshooting then settling, between syncs.",
     `@Composable
 fun SyncIcon(syncing: Boolean) {
     val angle by animateFloatAsState(
@@ -623,7 +623,7 @@ fun UploadCloud(uploading: Boolean) {
   icon(
     "icon-share-nodes",
     "Share",
-    "Three nodes that pop in as connecting links draw between them — the share graph.",
+    "Three nodes that pop in as connecting links draw between them, the share graph.",
     `@Composable
 fun ShareNodes(visible: Boolean) {
     val p by animateFloatAsState(if (visible) 1f else 0f, tween(700, easing = EaseOutBack), label = "share")
@@ -650,7 +650,7 @@ fun ShareNodes(visible: Boolean) {
   icon(
     "icon-settings-gears",
     "Settings",
-    "Two meshed gears turning in opposite directions — a richer take on the settings cog.",
+    "Two meshed gears turning in opposite directions, a richer take on the settings cog.",
     `@Composable
 fun MeshedGears() {
     val t = rememberInfiniteTransition(label = "gears")
@@ -847,7 +847,7 @@ fun TrophyShine() {
   icon(
     "icon-gift-open",
     "Gift",
-    "A wrapped gift whose lid lifts with a sparkle — perfect for rewards and unlock moments.",
+    "A wrapped gift whose lid lifts with a sparkle, perfect for rewards and unlock moments.",
     `@Composable
 fun GiftOpen(opened: Boolean) {
     val lift by animateFloatAsState(if (opened) -6f else 0f, spring(stiffness = 350f), label = "lift")
@@ -870,7 +870,7 @@ fun GiftOpen(opened: Boolean) {
   icon(
     "icon-confetti",
     "Confetti",
-    "A celebratory burst of confetti pieces flying outward — for success and milestone moments.",
+    "A celebratory burst of confetti pieces flying outward, for success and milestone moments.",
     `@Composable
 fun ConfettiBurst(play: Boolean) {
     val t by animateFloatAsState(if (play) 1f else 0f, tween(900, easing = EaseOutCubic), label = "burst")
@@ -908,7 +908,7 @@ fun ConfettiBurst(play: Boolean) {
   icon(
     "icon-rocket-launch",
     "Rocket",
-    "A rocket that hovers with a flickering exhaust plume — for launches, deploys and boosts.",
+    "A rocket that hovers with a flickering exhaust plume, for launches, deploys and boosts.",
     `@Composable
 fun RocketLaunch() {
     val t = rememberInfiniteTransition(label = "rkt")
@@ -1108,7 +1108,7 @@ fun Hourglass() {
   icon(
     "icon-sunrise",
     "Sunrise",
-    "A sun that rises above the horizon line, its rays growing — for morning or onboarding states.",
+    "A sun that rises above the horizon line, its rays growing, for morning or onboarding states.",
     `@Composable
 fun Sunrise() {
     val t = rememberInfiniteTransition(label = "sun")
@@ -1156,7 +1156,7 @@ fun RainCloud() {
   icon(
     "icon-snow",
     "Snow",
-    "A snowflake that drifts gently downward while slowly rotating — a calm weather indicator.",
+    "A snowflake that drifts gently downward while slowly rotating, a calm weather indicator.",
     `@Composable
 fun Snowfall() {
     val t = rememberInfiniteTransition(label = "snow")
@@ -1197,7 +1197,7 @@ fun ThunderCloud() {
   icon(
     "icon-wind",
     "Wind",
-    "Gusts of wind drifting across the frame in sequence — for breezy weather or airflow.",
+    "Gusts of wind drifting across the frame in sequence, for breezy weather or airflow.",
     `@Composable
 fun WindGust() {
     val t = rememberInfiniteTransition(label = "wind")
@@ -1225,7 +1225,7 @@ fun WindGust() {
   icon(
     "icon-flame",
     "Flame",
-    "A fire that flickers organically with scale and shear — for streaks, trends and hot items.",
+    "A fire that flickers organically with scale and shear, for streaks, trends and hot items.",
     `@Composable
 fun Flame() {
     val t = rememberInfiniteTransition(label = "fire")
@@ -1243,7 +1243,7 @@ fun Flame() {
   icon(
     "icon-moon-stars",
     "Night",
-    "A crescent moon with stars twinkling beside it — a polished light/dark or night mode mark.",
+    "A crescent moon with stars twinkling beside it, a polished light/dark or night mode mark.",
     `@Composable
 fun MoonStars() {
     val t = rememberInfiniteTransition(label = "night")
@@ -1265,7 +1265,7 @@ fun MoonStars() {
   icon(
     "icon-droplet",
     "Droplet",
-    "A water drop that swells and releases a ripple — for hydration, liquids and freshness.",
+    "A water drop that swells and releases a ripple, for hydration, liquids and freshness.",
     `@Composable
 fun Droplet() {
     val t = rememberInfiniteTransition(label = "drop")
@@ -1288,7 +1288,7 @@ fun Droplet() {
   icon(
     "icon-leaf",
     "Leaf",
-    "A leaf swaying in the breeze — an eco, nature or sustainability accent with gentle motion.",
+    "A leaf swaying in the breeze, an eco, nature or sustainability accent with gentle motion.",
     `@Composable
 fun SwayingLeaf() {
     val sway by rememberInfiniteTransition(label = "leaf").animateFloat(
@@ -1304,7 +1304,7 @@ fun SwayingLeaf() {
   icon(
     "icon-logout",
     "Logout",
-    "A door with an arrow sliding out through it — a clear, animated sign-out affordance.",
+    "A door with an arrow sliding out through it, a clear, animated sign-out affordance.",
     `@Composable
 fun LogoutIcon(onClick: () -> Unit) {
     val t = rememberInfiniteTransition(label = "out")
@@ -1324,7 +1324,7 @@ fun LogoutIcon(onClick: () -> Unit) {
   icon(
     "icon-login",
     "Login",
-    "A door with an arrow sliding inward — the sign-in counterpart to the logout control.",
+    "A door with an arrow sliding inward, the sign-in counterpart to the logout control.",
     `@Composable
 fun LoginIcon(onClick: () -> Unit) {
     val t = rememberInfiniteTransition(label = "in")
@@ -1344,7 +1344,7 @@ fun LoginIcon(onClick: () -> Unit) {
   icon(
     "icon-cart-add",
     "Add to cart",
-    "A shopping cart that bumps as an item drops into it — confirming a product was added.",
+    "A shopping cart that bumps as an item drops into it, confirming a product was added.",
     `@Composable
 fun AddToCart(onAdd: () -> Unit) {
     var added by remember { mutableStateOf(false) }
@@ -1457,7 +1457,7 @@ fun AnimatedCheckbox(checked: Boolean, onChange: (Boolean) -> Unit) {
   icon(
     "icon-toggle-switch",
     "Switch",
-    "A switch whose knob slides across as the track colour fills — the canonical on/off control.",
+    "A switch whose knob slides across as the track colour fills, the canonical on/off control.",
     `@Composable
 fun LabeledSwitch(on: Boolean, onChange: (Boolean) -> Unit) {
     // Material 3 Switch, customized colors via theme.
@@ -1562,7 +1562,7 @@ fun ErrorShake(error: Boolean) {
   icon(
     "icon-thumbs-up",
     "Thumbs up",
-    "A thumbs-up that springs up with an approving pop ring — for upvotes and approvals.",
+    "A thumbs-up that springs up with an approving pop ring, for upvotes and approvals.",
     `@Composable
 fun ThumbsUp(liked: Boolean, onClick: () -> Unit) {
     val scale by animateFloatAsState(if (liked) 1f else 0.9f,
