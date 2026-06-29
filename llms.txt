@@ -1,0 +1,40 @@
+# caveui
+
+> caveui is a community-driven catalog of beautiful, copy-friendly Jetpack Compose components for Android. Inspired by shadcn/ui, uiverse and Tailwind UI — but built on Material 3. There is no black box: every component is source you read, copy, and own. The monorepo holds the Kotlin/Gradle library, an Android sample app, and a static Next.js docs/gallery site.
+
+Repository: https://github.com/Jumnert/CaveUI
+
+## Structure
+
+- [README](https://github.com/Jumnert/CaveUI/blob/main/README.md): Project overview, repo layout, quick start, and how to run/deploy the docs site.
+- [CONTRIBUTING](https://github.com/Jumnert/CaveUI/blob/main/CONTRIBUTING.md): Step-by-step workflow for adding a component (the `Button` component is the reference template).
+- [LICENSE](https://github.com/Jumnert/CaveUI/blob/main/LICENSE): MIT license.
+
+## Library (Jetpack Compose, Kotlin/Gradle)
+
+- `library/src/main/java/io/caveui/theme/`: Design tokens — Color.kt, Type.kt, Shape.kt, Spacing.kt, Theme.kt. `CaveTheme` builds on Material 3 for free dark mode and dynamic color.
+- `library/src/main/java/io/caveui/components/`: One folder per component (e.g. `button/`). Each component is self-contained.
+- `sample/`: Android demo app — the test bed for every component.
+
+## Docs site (Next.js)
+
+- `web/`: Static Next.js + Tailwind + MDX gallery (no backend, `output: "export"`). See web/llms.txt for site details.
+- `web/src/lib/registry/`: Single source of truth for the gallery, detail pages, and CLI install commands — one file per category.
+
+## Usage
+
+```kotlin
+import io.caveui.components.button.CaveButton
+import io.caveui.theme.CaveTheme
+
+CaveTheme {
+    CaveButton(text = "Get started", onClick = { /* ... */ })
+}
+```
+
+Add a component with the CLI: `npx caveui@latest add <id>` (e.g. `button-gradient`).
+
+## Build & verify
+
+- Android library: `./gradlew assembleDebug`
+- Docs site: `cd web && npm install && npm run build`
